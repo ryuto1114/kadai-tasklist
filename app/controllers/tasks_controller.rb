@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:edit, :destroy]
+  before_action :correct_user, only: [:show, :edit, :destroy]
  
   def index
     if logged_in?
@@ -30,7 +30,6 @@ class TasksController < ApplicationController
   
   def edit
     @task = Task.find(params[:id])
-    @task.edit
   end  
 
   def update
