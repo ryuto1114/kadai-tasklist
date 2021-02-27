@@ -16,11 +16,11 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
-      flash[:success] = 'メッセージを投稿しました。'
+      flash[:success] = 'タスクを投稿しました。'
       redirect_to root_url
     else
       @tasks = current_user.tasks.order(id: :desc).page(params[:page])
-      flash.now[:danger] = 'メッセージの投稿に失敗しました。'
+      flash.now[:danger] = 'タスクの投稿に失敗しました。'
       render :new
     end
   end
@@ -41,6 +41,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     flash[:success] = 'タスクは正常に削除されました'
+    redirect_to root_url
   end
   
   private
